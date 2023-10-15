@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.gildedrose.GildedRoseTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-10-15T00:54:56" hostname="ASUS" time="0.06">
+<testsuite name="com.gildedrose.GildedRoseTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-10-15T01:12:32" hostname="ASUS" time="0.055">
   <properties/>
-  <testcase name="Test that the name is unchanged" classname="com.gildedrose.GildedRoseTest" time="0.044"/>
-  <testcase name="Test that the quality is unchanged" classname="com.gildedrose.GildedRoseTest" time="0.001"/>
+  <testcase name="Test that the name is unchanged" classname="com.gildedrose.GildedRoseTest" time="0.035"/>
+  <testcase name="Test that the quality is unchanged" classname="com.gildedrose.GildedRoseTest" time="0.0"/>
   <testcase name="Test UpdateQuality" classname="com.gildedrose.GildedRoseTest" time="0.001"/>
-  <testcase name="Test toString" classname="com.gildedrose.GildedRoseTest" time="0.007"/>
-  <testcase name="Test that the Sellin is unchanged" classname="com.gildedrose.GildedRoseTest" time="0.001"/>
+  <testcase name="Test toString" classname="com.gildedrose.GildedRoseTest" time="0.014"/>
+  <testcase name="Test that the Sellin is unchanged" classname="com.gildedrose.GildedRoseTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
