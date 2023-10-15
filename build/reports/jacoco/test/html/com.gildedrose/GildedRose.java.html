@@ -2,62 +2,92 @@
 
 class GildedRose {
   Item[] items;
+  private static final String AGED = &quot;Aged Brie&quot;;
+  private static final String BACKSTAGE = &quot;Backstage passes to a TAFKAL80ETC concert&quot;;
+  private static final String SULFURAS = &quot;Sulfuras, Hand of Ragnaros&quot;;
+  private static final String CONJURED = &quot;Conjured&quot;;
 
-<span class="fc" id="L6">  public GildedRose(Item[] items) {</span>
-<span class="fc" id="L7">    this.items = items;</span>
-<span class="fc" id="L8">  }</span>
+<span class="fc" id="L10">  public GildedRose(Item[] items) {</span>
+<span class="fc" id="L11">    this.items = items;</span>
+<span class="fc" id="L12">  }</span>
 
   public void updateQuality() {
-<span class="fc bfc" id="L11" title="All 2 branches covered.">    for (int i = 0; i &lt; items.length; i++) {</span>
-<span class="fc bfc" id="L12" title="All 2 branches covered.">      if (!items[i].name.equals(&quot;Aged Brie&quot;)</span>
-<span class="fc bfc" id="L13" title="All 2 branches covered.">          &amp;&amp; !items[i].name.equals(&quot;Backstage passes to a TAFKAL80ETC concert&quot;)) {</span>
-<span class="fc bfc" id="L14" title="All 2 branches covered.">        if (items[i].quality &gt; 0) {</span>
-<span class="fc bfc" id="L15" title="All 2 branches covered.">          if (!items[i].name.equals(&quot;Sulfuras, Hand of Ragnaros&quot;)) {</span>
-<span class="fc" id="L16">            items[i].quality = items[i].quality - 1;</span>
-          }
-        }
-      } else {
-<span class="fc bfc" id="L20" title="All 2 branches covered.">        if (items[i].quality &lt; 50) {</span>
-<span class="fc" id="L21">          items[i].quality = items[i].quality + 1;</span>
-
-<span class="fc bfc" id="L23" title="All 2 branches covered.">          if (items[i].name.equals(&quot;Backstage passes to a TAFKAL80ETC concert&quot;)) {</span>
-<span class="fc bfc" id="L24" title="All 2 branches covered.">            if (items[i].sellIn &lt; 11) {</span>
-<span class="fc bfc" id="L25" title="All 2 branches covered.">              if (items[i].quality &lt; 50) {</span>
-<span class="fc" id="L26">                items[i].quality = items[i].quality + 1;</span>
-              }
-            }
-
-<span class="fc bfc" id="L30" title="All 2 branches covered.">            if (items[i].sellIn &lt; 6) {</span>
-<span class="fc bfc" id="L31" title="All 2 branches covered.">              if (items[i].quality &lt; 50) {</span>
-<span class="fc" id="L32">                items[i].quality = items[i].quality + 1;</span>
-              }
-            }
-          }
-        }
-      }
-
-<span class="fc bfc" id="L39" title="All 2 branches covered.">      if (!items[i].name.equals(&quot;Sulfuras, Hand of Ragnaros&quot;)) {</span>
-<span class="fc" id="L40">        items[i].sellIn = items[i].sellIn - 1;</span>
-      }
-
-<span class="fc bfc" id="L43" title="All 2 branches covered.">      if (items[i].sellIn &lt; 0) {</span>
-<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (!items[i].name.equals(&quot;Aged Brie&quot;)) {</span>
-<span class="fc bfc" id="L45" title="All 2 branches covered.">          if (!items[i].name.equals(&quot;Backstage passes to a TAFKAL80ETC concert&quot;)) {</span>
-<span class="fc bfc" id="L46" title="All 2 branches covered.">            if (items[i].quality &gt; 0) {</span>
-<span class="fc bfc" id="L47" title="All 2 branches covered.">              if (!items[i].name.equals(&quot;Sulfuras, Hand of Ragnaros&quot;)) {</span>
-<span class="fc" id="L48">                items[i].quality = items[i].quality - 1;</span>
-              }
-            }
-          } else {
-<span class="fc" id="L52">            items[i].quality = items[i].quality - items[i].quality;</span>
-          }
-        } else {
-<span class="fc bfc" id="L55" title="All 2 branches covered.">          if (items[i].quality &lt; 50) {</span>
-<span class="fc" id="L56">            items[i].quality = items[i].quality + 1;</span>
-          }
-        }
-      }
+<span class="fc bfc" id="L15" title="All 2 branches covered.">    for (Item item : items) {</span>
+<span class="fc" id="L16">      updateItem(item);</span>
     }
-<span class="fc" id="L61">  }</span>
+<span class="fc" id="L18">  }</span>
+
+  private void updateItem(Item item) {
+<span class="fc" id="L21">    modifyQuality(item);</span>
+
+<span class="fc" id="L23">    modifySellin(item);</span>
+
+<span class="fc bfc" id="L25" title="All 2 branches covered.">    if (expiredItem(item)) {</span>
+<span class="fc" id="L26">      expiryMethod(item);</span>
+    }
+<span class="fc" id="L28">  }</span>
+
+  private boolean expiredItem(Item item) {
+<span class="fc bfc" id="L31" title="All 2 branches covered.">    return item.sellIn &lt; 0;</span>
+  }
+
+  private void expiryMethod(Item item) {
+<span class="fc bfc" id="L35" title="All 2 branches covered.">    if (item.name.equals(AGED)) {</span>
+<span class="fc" id="L36">      increaseQualityIfLessThan50(item);</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">    } else if (item.name.equals(BACKSTAGE)) {</span>
+<span class="fc" id="L38">      item.quality = 0;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">    } else if (item.name.equals(CONJURED)) {</span>
+<span class="fc" id="L40">      decreaseQualityIfHigherThan0(item);</span>
+<span class="fc" id="L41">      decreaseQualityIfHigherThan0(item);</span>
+    } else {
+<span class="fc bfc" id="L43" title="All 2 branches covered.">      if (item.name.equals(SULFURAS)) {</span>
+<span class="fc" id="L44">        return;</span>
+      }
+<span class="fc" id="L46">        decreaseQualityIfHigherThan0(item);</span>
+      }
+<span class="fc" id="L48">    }</span>
+  
+
+  private void decreaseQualityIfHigherThan0(Item item) {
+<span class="fc bfc" id="L52" title="All 2 branches covered.">    if (item.quality &gt; 0) {</span>
+<span class="fc" id="L53">      item.quality = item.quality - 1;</span>
+    }
+<span class="fc" id="L55">  }</span>
+
+  private void modifySellin(Item item) {
+<span class="fc bfc" id="L58" title="All 2 branches covered.">    if (item.name.equals(SULFURAS)) {</span>
+<span class="fc" id="L59">      return;</span>
+    }
+<span class="fc" id="L61">    item.sellIn--;</span>
+<span class="fc" id="L62">  }</span>
+
+  private void modifyQuality(Item item) {
+<span class="fc bfc" id="L65" title="All 2 branches covered.">    if (item.name.equals(AGED)) {</span>
+<span class="fc" id="L66">      increaseQualityIfLessThan50(item);</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">    } else if (item.name.equals(BACKSTAGE)) {</span>
+<span class="fc" id="L68">      increaseQualityIfLessThan50(item);</span>
+
+<span class="fc bfc" id="L70" title="All 2 branches covered.">      if (item.sellIn &lt; 11) {</span>
+<span class="fc" id="L71">        increaseQualityIfLessThan50(item);</span>
+      }
+
+<span class="fc bfc" id="L74" title="All 2 branches covered.">      if (item.sellIn &lt; 6) {</span>
+<span class="fc" id="L75">        increaseQualityIfLessThan50(item);</span>
+      }
+<span class="fc bfc" id="L77" title="All 2 branches covered.">    } else if (item.name.equals(CONJURED)) {</span>
+<span class="fc" id="L78">      decreaseQualityIfHigherThan0(item);</span>
+<span class="fc" id="L79">      decreaseQualityIfHigherThan0(item);</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">    } else if (item.name.equals(SULFURAS)) {</span>
+<span class="fc" id="L81">      return;</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">    } else if (item.quality &gt; 0) {</span>
+<span class="fc" id="L83">      item.quality = item.quality - 1;</span>
+    }
+<span class="fc" id="L85">  }</span>
+
+  private void increaseQualityIfLessThan50(Item item) {
+<span class="fc bfc" id="L88" title="All 2 branches covered.">    if (item.quality &lt; 50) {</span>
+<span class="fc" id="L89">      item.quality = item.quality + 1;</span>
+    }
+<span class="fc" id="L91">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

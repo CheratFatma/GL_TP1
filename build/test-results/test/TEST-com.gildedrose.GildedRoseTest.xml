@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.gildedrose.GildedRoseTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-10-15T03:04:00" hostname="ASUS" time="0.082">
+<testsuite name="com.gildedrose.GildedRoseTest" tests="7" skipped="0" failures="2" errors="0" timestamp="2023-10-15T15:50:16" hostname="ASUS" time="0.114">
   <properties/>
-  <testcase name="Test that the name is unchanged" classname="com.gildedrose.GildedRoseTest" time="0.053"/>
-  <testcase name="Test that the quality is unchanged" classname="com.gildedrose.GildedRoseTest" time="0.002"/>
-  <testcase name="Test UpdateQuality" classname="com.gildedrose.GildedRoseTest" time="0.002"/>
-  <testcase name="Test toString" classname="com.gildedrose.GildedRoseTest" time="0.013"/>
-  <testcase name="Test that the Sellin is unchanged" classname="com.gildedrose.GildedRoseTest" time="0.002"/>
+  <testcase name="Test that the name is unchanged" classname="com.gildedrose.GildedRoseTest" time="0.062"/>
+  <testcase name="Test toString" classname="com.gildedrose.GildedRoseTest" time="0.014"/>
+  <testcase name="testUpdateQualityConjuredNegativeSellIn()" classname="com.gildedrose.GildedRoseTest" time="0.026">
+    <failure message="org.opentest4j.AssertionFailedError: Conjured quality should decrease by 4 when sellIn is negative. ==&gt; expected: &lt;6&gt; but was: &lt;8&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Conjured quality should decrease by 4 when sellIn is negative. ==&gt; expected: &lt;6&gt; but was: &lt;8&gt;
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at app//org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:559)
+	at app//com.gildedrose.GildedRoseTest.testUpdateQualityConjuredNegativeSellIn(GildedRoseTest.java:116)
+	at java.base@20.0.2/java.lang.reflect.Method.invoke(Method.java:578)
+	at java.base@20.0.2/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base@20.0.2/java.util.ArrayList.forEach(ArrayList.java:1511)
+</failure>
+  </testcase>
+  <testcase name="testUpdateQualityConjuredPositiveSellIn()" classname="com.gildedrose.GildedRoseTest" time="0.003">
+    <failure message="org.opentest4j.AssertionFailedError: Conjured quality should decrease by 2 when sellIn is positive ==&gt; expected: &lt;8&gt; but was: &lt;9&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Conjured quality should decrease by 2 when sellIn is positive ==&gt; expected: &lt;8&gt; but was: &lt;9&gt;
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at app//org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:559)
+	at app//com.gildedrose.GildedRoseTest.testUpdateQualityConjuredPositiveSellIn(GildedRoseTest.java:108)
+	at java.base@20.0.2/java.lang.reflect.Method.invoke(Method.java:578)
+	at java.base@20.0.2/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base@20.0.2/java.util.ArrayList.forEach(ArrayList.java:1511)
+</failure>
+  </testcase>
+  <testcase name="Test that the quality is unchanged" classname="com.gildedrose.GildedRoseTest" time="0.001"/>
+  <testcase name="Test UpdateQuality" classname="com.gildedrose.GildedRoseTest" time="0.0"/>
+  <testcase name="Test that the Sellin is unchanged" classname="com.gildedrose.GildedRoseTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

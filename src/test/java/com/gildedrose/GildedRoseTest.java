@@ -37,8 +37,9 @@ class GildedRoseTest {
   //Tester ToSTRING
   @Test
   @DisplayName("Test toString")
-  void testToString2() {
+  void testToString() {
     Item element = new Item("foo", 1, 2);
+
     GildedRose app = new GildedRose(new Item[] {element});
     app.updateQuality();
     String result = "foo" + ", " + 0 + ", " + 1;
@@ -97,7 +98,26 @@ class GildedRoseTest {
     assertEquals(5,items[9].sellIn,"the sellin changed"); //s-1
 
   }
+
+  //Partie 4 - Ajout de fonctionnalité
+    @Test
+    public void testUpdateQualityConjuredPositiveSellIn() {
+        Item element = new Item("Conjured", 5, 10) ;
+        GildedRose app = new GildedRose(new Item[] {element});
+        app.updateQuality();
+        assertEquals(8, element.quality, "Conjured quality should decrease by 2 when sellIn is positive");
+    }
   
+    @Test
+    public void testUpdateQualityConjuredNegativeSellIn() {
+        Item element = new Item("Conjured", -5, 10) ;
+        GildedRose app = new GildedRose(new Item[] {element});
+        app.updateQuality();
+        assertEquals(6,element.quality,"Conjured quality should decrease by 4 when sellIn is negative.");
+    }
+
+
+   
 }
 
 
