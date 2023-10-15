@@ -5,6 +5,7 @@ class GildedRose {
   private static final String AGED = "Aged Brie";
   private static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
   private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+  private static final String CONJURED = "Conjured";
 
   public GildedRose(Item[] items) {
     this.items = items;
@@ -33,37 +34,37 @@ class GildedRose {
   private void expiryMethod(Item item) {
     if (item.name.equals(AGED)) {
       increaseQualityIfLessThan50(item);
-    }
-    else if (item.name.equals(BACKSTAGE)) {
+    } else if (item.name.equals(BACKSTAGE)) {
       item.quality = 0;
-    }
-    else {
-      if (!item.name.equals(SULFURAS)) {
+    } else if (item.name.equals(CONJURED)) {
+      decreaseQualityIfHigherThan0(item);
+      decreaseQualityIfHigherThan0(item);
+    } else {
+      if (item.name.equals(SULFURAS)) {
+        return;
+      }
         decreaseQualityIfHigherThan0(item);
       }
     }
-  }
+  
 
   private void decreaseQualityIfHigherThan0(Item item) {
     if (item.quality > 0) {
-      item.quality = item.quality - 1;
+      item.quality--;
     }
   }
-  
 
   private void modifySellin(Item item) {
     if (item.name.equals(SULFURAS)) {
       return;
     }
-      item.sellIn--;
+    item.sellIn--;
   }
-  
 
   private void modifyQuality(Item item) {
-    if (item.name.equals(AGED)){
+    if (item.name.equals(AGED)) {
       increaseQualityIfLessThan50(item);
-    }
-    else if (item.name.equals(BACKSTAGE)) {
+    } else if (item.name.equals(BACKSTAGE)) {
       increaseQualityIfLessThan50(item);
 
       if (item.sellIn < 11) {
@@ -73,18 +74,20 @@ class GildedRose {
       if (item.sellIn < 6) {
         increaseQualityIfLessThan50(item);
       }
-    }
-    else if (item.name.equals(SULFURAS)) {
+    } else if (item.name.equals(CONJURED)) {
+      decreaseQualityIfHigherThan0(item);
+      decreaseQualityIfHigherThan0(item);
+    } else if (item.name.equals(SULFURAS)) {
       return;
-    }
-    else if (item.quality > 0) {
-          item.quality = item.quality - 1;
+    } else {
+      decreaseQualityIfHigherThan0(item);
     }
   }
+  
 
   private void increaseQualityIfLessThan50(Item item) {
     if (item.quality < 50) {
-      item.quality = item.quality + 1;
+      item.quality++;
     }
   }
 }
