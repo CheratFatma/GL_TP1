@@ -2,6 +2,9 @@ package com.gildedrose;
 
 class GildedRose {
   Item[] items;
+  private static final String AGED = "Aged Brie";
+  private static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+  private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
   public GildedRose(Item[] items) {
     this.items = items;
@@ -28,14 +31,14 @@ class GildedRose {
   }
 
   private void expiryMethod(Item item) {
-    if (item.name.equals("Aged Brie")) {
+    if (item.name.equals(AGED)) {
       increaseQualityIfLessThan50(item);
     }
-    else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+    else if (item.name.equals(BACKSTAGE)) {
       item.quality = 0;
     }
     else {
-      if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+      if (!item.name.equals(SULFURAS)) {
         decreaseQualityIfHigherThan0(item);
       }
     }
@@ -49,7 +52,7 @@ class GildedRose {
   
 
   private void modifySellin(Item item) {
-    if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+    if (item.name.equals(SULFURAS)) {
       return;
     }
       item.sellIn--;
@@ -57,10 +60,10 @@ class GildedRose {
   
 
   private void modifyQuality(Item item) {
-    if (item.name.equals("Aged Brie")){
+    if (item.name.equals(AGED)){
       increaseQualityIfLessThan50(item);
     }
-    else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+    else if (item.name.equals(BACKSTAGE)) {
       increaseQualityIfLessThan50(item);
 
       if (item.sellIn < 11) {
@@ -71,7 +74,7 @@ class GildedRose {
         increaseQualityIfLessThan50(item);
       }
     }
-    else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+    else if (item.name.equals(SULFURAS)) {
       return;
     }
     else if (item.quality > 0) {
